@@ -150,6 +150,7 @@ fn extract_decoded_content_length(hs: &'_ OrderedHeaders<'_>) -> S3Result<Option
 }
 
 async fn extract_full_body(content_length: Option<u64>, body: &mut Body) -> S3Result<Bytes> {
+    tracing::debug!("Extracting the full body!");
     if let Some(bytes) = body.bytes() {
         return Ok(bytes);
     }
